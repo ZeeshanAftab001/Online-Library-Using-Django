@@ -1,0 +1,70 @@
+{% extends 'basic.html'%}
+{% load static %}
+{% block title %}
+Home
+{% endblock title %}
+
+{% block body %}
+
+ <div class="container" style="padding-top: 20px; font-family: sans-serif;">
+    <h1>Categories</h1>
+  </div>
+  <!-- Collections -->
+  <section class="py-5">
+    <div class="container px-4 pcategoryx-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for category in categories %}
+          <div class="col mb-5">
+            <div class="card h-100">
+              <a href="{% url 'category' category.name %}">
+                <img class="card-img-top" src="{{ category.image_cat.url }}" alt="..." />
+                <div class="card-body p-4"></div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                    <h6>{{ category.name }}</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="container" style="padding-top: 20px; font-family: sans-serif;">
+        <h1>Books</h1>
+    </div>
+    <div class="container px-4 pcategoryx-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for book in books %}
+          <div class="col md-3">
+            <div class="card h-100" style="height: 200px;">
+                <img class="card-img-top" src="{{ book.cover_page.url }}" style="height: auto;" alt="..." />
+                <div class="card-body p-4"></div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                    <h6>{{ book.title }}</h6>
+                  </div>
+                </div>
+                {% if user.is_authenticated %}
+                <div style="padding: 10px; margin-left: 5px;">
+                  <a href="{% url 'download_book' book.id %}" class="btn btn-primary" style="background-color:#013220;border: none;">Download</a>
+                </div>
+                  {% else %}
+                  <div style="padding: 10px; margin-left: 5px;">
+                <a href="{% url 'login_user' %}?next={{ request.path }}" class="btn btn-primary" style="background-color:#013220;border: none;">Login to Download</a>
+                  </div>
+                {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+
+
+{% endblock body %}
+
+
+
+

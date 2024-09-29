@@ -1,0 +1,45 @@
+{% extends 'basic.html'%}
+{% load static %}
+{% block title %}
+Categories
+{% endblock title %}
+
+{% block body %}
+
+ <div class="container" style="padding-top: 20px; font-family: sans-serif;">
+  </div>
+  <!-- Collections -->
+  <section class="py-5">
+    <div class="container px-4 pcategoryx-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        {% for book in books %}
+          <div class="col mb-5">
+            <div class="card h-100">
+                <img class="card-img-top" src="{{ book.image_cat.url }}" alt="..." />
+                <div class="card-body p-4"></div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                    <h6>{{ book.name }}</h6>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="container" style="padding-top: 20px; font-family: sans-serif;">
+        <h1>Books</h1>
+    </div>
+    <div class="container px-4 pcategoryx-lg-5 mt-5">
+      <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+
+  </section>
+
+
+
+{% endblock body %}
+
+
+
+
